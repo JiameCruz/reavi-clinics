@@ -1,0 +1,55 @@
+---
+import Nav from "./Nav.astro";
+---
+
+<header>
+  <div class="header-container">
+    <a href="/" class="logo">
+      <img src="/logo.png" alt="Reavi Clinics" />
+    </a>
+
+    <Nav />
+  </div>
+</header>
+
+<style>
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1rem 0;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(52, 193, 207, 0.1);
+    display: grid;
+    place-items: center;
+    transition: var(--transition-smooth);
+  }
+
+  .header-container {
+    width: 90%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .logo img {
+    height: 40px;
+    width: auto;
+    display: block;
+    transition: var(--transition-smooth);
+  }
+
+  @media (max-width: 768px) {
+    .header-container {
+      grid-template-columns: 1fr;
+      place-items: center;
+      gap: 1rem;
+    }
+  }
+</style>

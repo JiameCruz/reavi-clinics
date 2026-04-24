@@ -1,0 +1,82 @@
+---
+
+---
+
+<main>
+  <section>
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1>Reavi Clinics</h1>
+        <p>Donde curamos tu dolor</p>
+      </div>
+      <div class="hero-image">
+        <img src="/img/hero-img.jpg" alt="Hero Image" />
+      </div>
+    </div>
+  </section>
+</main>
+<style>
+  main {
+    padding-top: 4.5rem; /* Compensa el header fixed */
+  }
+  section {
+  }
+
+  .hero-container {
+    display: grid;
+    height: 80vh;
+    background-color: var(--color-primary);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .hero-content {
+    margin-left: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+
+  .hero-content p {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  .hero-image {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-image img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+  }
+
+  @media (max-width: 768px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      height: auto;
+      padding: 2rem;
+    }
+
+    .hero-container::before {
+      height: 98%;
+    }
+
+    .hero-content {
+      margin-left: 0;
+      text-align: center;
+    }
+
+    .hero-image {
+      margin-top: 2rem;
+    }
+  }
+</style>

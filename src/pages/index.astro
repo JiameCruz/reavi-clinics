@@ -1,11 +1,18 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header/Header.astro";
+import Hero from "../components/Hero/Hero.astro";
+import Services from "../components/ServicesReavi/Services.astro";
+import Beneficios from "../components/Beneficios/Beneficios.astro";
+import Price from "../components/Prices/Price.astro";
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Reavi Clinics | Fisioterapia y Masajes">
+  <Header />
+  <Hero />
+  <Services />
+  <Beneficios />
+  <Price />
 </Layout>
+
+<style></style>

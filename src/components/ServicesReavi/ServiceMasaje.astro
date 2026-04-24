@@ -1,0 +1,61 @@
+---
+const services = [
+  "Masaje Relajante",
+  "Masaje Descontracturante",
+  "Masaje de Descarga Muscular"
+];
+---
+
+<div class="service-category">
+  <h3 class="category-title">Servicios de Masaje</h3>
+  <div class="cards-grid">
+    {services.map(service => (
+      <div class="card card-secondary">
+        <h4>{service}</h4>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .service-category {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: left;
+  }
+  .category-title {
+    color: var(--color-secondary, #D266A3);
+    font-size: 1.8rem;
+    margin: 0;
+    font-weight: 700;
+  }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+  }
+  .card {
+    background-color: var(--color-secondary, #D266A3);
+    color: #ffffff;
+    padding: 1.5rem 1rem;
+    border-radius: 0; /* Diseño cuadrado, sin bordes redondeados */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 120px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    filter: brightness(1.1);
+  }
+  .card h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+</style>

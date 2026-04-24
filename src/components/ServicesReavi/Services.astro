@@ -1,0 +1,35 @@
+---
+import ServiceGral from "./ServiceGral.astro";
+import ServiceMasaje from "./ServiceMasaje.astro";
+---
+
+<section id="services">
+  <div class="services-container">
+    <article class="service">
+      <ServiceGral />
+    </article>
+    <article class="service">
+      <ServiceMasaje />
+    </article>
+  </div>
+</section>
+
+<style>
+  section {
+    margin-top: 2rem;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .services-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .service {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+</style>

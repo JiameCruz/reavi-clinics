@@ -1,0 +1,50 @@
+---
+import { Content, frontmatter } from "../../BeneficiosMD/BeneficiosMasaje.md";
+---
+
+<div class="container">
+  <img src="/img/BeneficiosMasaje.jpg" alt="" />
+  <article>
+    <h2>{frontmatter.title}</h2>
+    <Content />
+  </article>
+</div>
+
+<style>
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 4rem 0;
+    border-bottom: 2px solid var(--color-secondary);
+    padding: 2rem;
+  }
+  img {
+    border-radius: 8px;
+    width: 100%;
+  }
+
+  article {
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 8px;
+  }
+
+  h2 {
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  p {
+    color: var(--color-text-main);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

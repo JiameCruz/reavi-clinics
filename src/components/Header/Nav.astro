@@ -1,0 +1,75 @@
+---
+
+---
+
+<nav>
+  <a href="#">Inicio</a>
+  <a href="#services">Servicios</a>
+  <a href="#beneficios">Beneficios</a>
+  <a href="#price">Precios</a>
+  <a href="#contact" class="cta-link">Contacto</a>
+</nav>
+
+<style>
+  nav {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: end;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 2.5rem);
+  }
+
+  nav a {
+    text-decoration: none;
+    color: var(--color-text-main);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition-smooth);
+    position: relative;
+  }
+
+  nav a::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: var(--transition-smooth);
+  }
+
+  nav a:hover {
+    color: var(--color-primary);
+  }
+
+  nav a:hover::after {
+    width: 100%;
+  }
+
+  .cta-link {
+    background-color: var(--color-primary);
+    color: white !important;
+    padding: 0.6rem 1.5rem;
+  }
+
+  .cta-link:hover {
+    background-color: var(--color-secondary);
+    transform: translateY(-2px);
+  }
+
+  .cta-link::after {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    nav {
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    nav a {
+      font-size: 0.85rem;
+    }
+  }
+</style>
