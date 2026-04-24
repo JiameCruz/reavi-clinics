@@ -1,83 +1,63 @@
 ---
-
+import CitasForm from './CitasForm';
 ---
 
 <section id="contact">
-  <h2>Contacto</h2>
-  <div class="contact-container">
-    <form action="">
-      <label for="name">Nombre</label>
-      <input type="text" id="name" name="name" />
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" />
-      <label for="message">Mensaje</label>
-      <textarea id="message" name="message"></textarea>
-      <button type="submit">Enviar</button>
-    </form>
+  <div class="contact-wrapper">
+    <div class="contact-info">
+      <h2>Agenda tu Cita</h2>
+      <p>Selecciona la sede de tu preferencia, el profesional y el servicio que necesitas. Podrás ver los horarios disponibles en tiempo real.</p>
+    </div>
+    <div class="form-wrapper">
+      <CitasForm client:load />
+    </div>
   </div>
 </section>
 
 <style>
   section {
-    padding: 2rem;
+    padding: 4rem 2rem;
+    background-color: var(--color-background-alt, #f9f9f9);
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 1rem;
   }
 
-  .contact-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  label {
-    color: var(--color-text-main);
-    font-size: 1rem;
-  }
-
-  input,
-  textarea {
-    padding: 0.5rem;
-    border: 2px solid var(--color-primary);
-    border-radius: 8px;
-    font-size: 1rem;
-    outline: none;
-  }
-
-  input:focus,
-  textarea:focus {
-    border-color: var(--color-secondary);
-  }
-
-  button {
+  .contact-wrapper {
+    max-width: 1200px;
     width: 100%;
-    font-size: 1rem;
-    font-weight: bold;
-    padding: 0.6rem 1.5rem;
-    background-color: var(--color-primary);
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: var(--transition-smooth);
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    align-items: start;
   }
 
-  button:hover {
-    background-color: var(--color-secondary);
-    transform: translateY(-2px);
+  .contact-info {
+    padding-top: 2rem;
   }
 
-  @media (max-width: 768px) {
-    .contact-container {
+  .contact-info h2 {
+    font-size: 2.5rem;
+    color: var(--color-primary, #2c3e50);
+    margin-bottom: 1rem;
+  }
+
+  .contact-info p {
+    font-size: 1.1rem;
+    color: var(--color-text-main, #555);
+    line-height: 1.6;
+  }
+
+  .form-wrapper {
+    width: 100%;
+  }
+
+  @media (max-width: 900px) {
+    .contact-wrapper {
       grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .contact-info {
+      text-align: center;
     }
   }
 </style>
