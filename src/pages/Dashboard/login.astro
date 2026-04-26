@@ -1,0 +1,202 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+// Si ya tiene sesión válida, redirigir al Calendario
+const sessionCookie = Astro.cookies.get('admin_session');
+if (sessionCookie) {
+  try {
+    const sessionData = JSON.parse(atob(sessionCookie.value));
+    if (sessionData.id && sessionData.email) {
+      return Astro.redirect('/Dashboard/Calendario');
+    }
+  } catch {
+    // Cookie inválida, continuar al login
+  }
+}
+---
+
+<Layout title="Login | Reavi Clinics">
+  <main class="login-page">
+    <div class="login-card">
+      <div class="login-header">
+        <h1>Panel de Administración</h1>
+        <p>Ingresa tus credenciales para continuar</p>
+      </div>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="admin@reavi.com"
+            autocomplete="email"
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            placeholder="••••••••"
+            autocomplete="current-password"
+          />
+        </div>
+        <div id="error-message" class="error-message"></div>
+        <button type="submit" id="submit-btn">
+          Iniciar Sesión
+        </button>
+      </form>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  const form = document.getElementById('login-form') as HTMLFormElement;
+  const errorEl = document.getElementById('error-message') as HTMLElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorEl.classList.remove('visible');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Ingresando...';
+
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (res.ok) {
+        window.location.href = '/Dashboard/Calendario';
+        return;
+      }
+
+      const data = await res.json();
+      errorEl.textContent = data.error || 'Error al iniciar sesión';
+      errorEl.classList.add('visible');
+    } catch {
+      errorEl.textContent = 'Error de conexión. Intenta de nuevo.';
+      errorEl.classList.add('visible');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Iniciar Sesión';
+    }
+  });
+</script>
+
+<style>
+  .login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+  }
+
+  .login-card {
+    background: var(--color-white);
+    border-radius: 16px;
+    padding: 3rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 4px 24px rgba(52, 193, 207, 0.08);
+  }
+
+  .login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .login-header h1 {
+    font-size: 1.5rem;
+    color: var(--color-text-main);
+    margin-bottom: 0.5rem;
+  }
+
+  .login-header p {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-main);
+  }
+
+  input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--color-text-main);
+    transition: border-color var(--duration-soft) var(--ease-soft);
+  }
+
+  input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+
+  input::placeholder {
+    color: #94a3b8;
+  }
+
+  .error-message {
+    color: #e53e3e;
+    font-size: 0.85rem;
+    text-align: center;
+    border-radius: 6px;
+    background: #fff5f5;
+    margin-bottom: 1rem;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .error-message.visible {
+    opacity: 1;
+    max-height: 60px;
+    padding: 0.75rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+  }
+
+  button:hover:not(:disabled) {
+    background: var(--color-primary-deep);
+    transform: translateY(-2px);
+  }
+
+  button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+</style>

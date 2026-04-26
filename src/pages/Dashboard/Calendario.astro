@@ -1,0 +1,93 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const admin = Astro.locals.admin;
+---
+
+<Layout title="Calendario | Reavi Clinics">
+  <header class="dashboard-header">
+    <div class="header-info">
+      <h1>Calendario de Citas</h1>
+      {admin && <span class="admin-email">{admin.email}</span>}
+    </div>
+    <button id="logout-btn" class="logout-btn">Cerrar Sesión</button>
+  </header>
+
+  <main class="dashboard-main">
+    <iframe
+      src="https://calendar.google.com/calendar/embed?src=26e69d4aa3c2a418f111057e00735d23ac71f1b735df7dd6db981e233d0d0e82%40group.calendar.google.com&ctz=America%2FMonterrey"
+      style="border: 0;"
+      width="100%"
+      height="600"
+      frameborder="0"
+      scrolling="no"></iframe>
+  </main>
+</Layout>
+
+<script>
+  document.getElementById('logout-btn')?.addEventListener('click', async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' });
+    } catch {
+      // Continuar con la redirección incluso si hay error
+    }
+    window.location.href = '/Dashboard/login';
+  });
+</script>
+
+<style>
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: var(--color-white);
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .header-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .header-info h1 {
+    font-size: 1.25rem;
+    color: var(--color-text-main);
+  }
+
+  .admin-email {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    background: #f1f5f9;
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+  }
+
+  .logout-btn {
+    padding: 0.5rem 1.25rem;
+    border: 1.5px solid var(--color-primary);
+    background: transparent;
+    color: var(--color-primary);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+  }
+
+  .logout-btn:hover {
+    background: var(--color-primary);
+    color: white;
+  }
+
+  .dashboard-main {
+    padding: 2rem;
+  }
+
+  iframe {
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(52, 193, 207, 0.06);
+  }
+</style>
