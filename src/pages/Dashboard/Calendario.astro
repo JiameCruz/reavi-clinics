@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import TimelineAdmin from "../../components/CalendarioDeCitas/TimelineAdmin";
 
 const admin = Astro.locals.admin;
 ---
@@ -14,24 +15,21 @@ const admin = Astro.locals.admin;
   </header>
 
   <main class="dashboard-main">
-    <iframe
-      src="https://calendar.google.com/calendar/embed?src=26e69d4aa3c2a418f111057e00735d23ac71f1b735df7dd6db981e233d0d0e82%40group.calendar.google.com&ctz=America%2FMonterrey"
-      style="border: 0;"
-      width="100%"
-      height="600"
-      frameborder="0"
-      scrolling="no"></iframe>
+    <TimelineAdmin 
+      client:load 
+      defaultLocalId={admin?.local_id} 
+    />
   </main>
 </Layout>
 
 <script>
-  document.getElementById('logout-btn')?.addEventListener('click', async () => {
+  document.getElementById("logout-btn")?.addEventListener("click", async () => {
     try {
-      await fetch('/api/auth/logout', { method: 'POST' });
+      await fetch("/api/auth/logout", { method: "POST" });
     } catch {
       // Continuar con la redirección incluso si hay error
     }
-    window.location.href = '/Dashboard/login';
+    window.location.href = "/Dashboard/login";
   });
 </script>
 

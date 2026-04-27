@@ -26,6 +26,7 @@ export const GET: APIRoute = async ({ request }) => {
       .from('citas')
       .select('fecha_hora')
       .eq('profesional_id', profesional_id)
+      .neq('estado', 'cancelada') // Excluir citas canceladas
       .gte('fecha_hora', fechaInicio.toISOString())
       .lte('fecha_hora', fechaFin.toISOString());
 
@@ -33,16 +34,20 @@ export const GET: APIRoute = async ({ request }) => {
 
     // Extraer horas ocupadas
     const horasOcupadas = citas.map((cita) => {
+      // Extract HH:mm directly from the UTC ISO string
       const date = new Date(cita.fecha_hora);
-      return date.toISOString().substring(11, 16); // Extract HH:mm in UTC
+      return date.toISOString().substring(11, 16);
     });
 
-    // Calcular disponibles
+    // Filtramos las horas ocupadas de la lista total
     const disponibles = HORAS_DISPONIBLES.filter(hora => !horasOcupadas.includes(hora));
 
-    return new Response(JSON.stringify({ disponibles }), {
+    return new Response(JSON.stringify({ 
+      disponibles,
+      ocupadas: horasOcupadas // Adding for debugging
+    }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' }
     });
   } catch (error: any) {
     return new Response(JSON.stringify({ error: error.message }), {

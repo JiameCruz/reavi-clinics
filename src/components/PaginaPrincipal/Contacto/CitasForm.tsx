@@ -83,8 +83,9 @@ export default function CitasForm() {
     ? profesionales.filter(p => p.id === servicios.find(s => s.id === selectedServicio)?.profesional_id)
     : [];
 
-  // Get today's date formatted as YYYY-MM-DD for min date
-  const today = new Date().toISOString().split('T')[0];
+  // Get today's date formatted as YYYY-MM-DD for min date in local time
+  const now = new Date();
+  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
