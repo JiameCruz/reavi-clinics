@@ -5,18 +5,20 @@ const services = [
   "Dolor de rodilla",
   "Problemas de Columna",
   "Lesiones deportivas",
-  "Dolor de cuello y hombro"
+  "Dolor de cuello y hombro",
 ];
 ---
 
 <div class="service-category">
   <h3 class="category-title">Fisioterapia y Rehabilitación</h3>
   <div class="cards-grid">
-    {services.map(service => (
-      <div class="card card-primary">
-        <h4>{service}</h4>
-      </div>
-    ))}
+    {
+      services.map((service) => (
+        <div class="card card-primary">
+          <h4>{service}</h4>
+        </div>
+      ))
+    }
   </div>
 </div>
 
@@ -28,7 +30,7 @@ const services = [
     text-align: left;
   }
   .category-title {
-    color: var(--color-primary, #34C1CF);
+    color: var(--color-primary, #34c1cf);
     font-size: 1.8rem;
     margin: 0;
     font-weight: 700;
@@ -40,7 +42,7 @@ const services = [
     width: 100%;
   }
   .card {
-    background-color: var(--color-primary, #34C1CF);
+    background-color: var(--color-primary, #34c1cf);
     color: #ffffff;
     padding: 1.5rem 1rem;
     border-radius: 0; /* Diseño cuadrado, sin bordes redondeados */
@@ -49,7 +51,10 @@ const services = [
     justify-content: center;
     text-align: center;
     min-height: 120px;
-    transition: transform 0.3s ease, filter 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      filter 0.3s ease;
+    border-radius: 12px;
   }
   .card:hover {
     transform: translateY(-4px);

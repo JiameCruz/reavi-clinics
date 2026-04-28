@@ -16,7 +16,7 @@
     grid-auto-flow: column;
     justify-content: end;
     align-items: center;
-    gap: clamp(1rem, 3vw, 2.5rem);
+    gap: clamp(1.5rem, 4vw, 3rem);
   }
 
   nav a {
@@ -49,13 +49,14 @@
 
   .cta-link {
     background-color: var(--color-primary);
-    color: white !important;
-    padding: 0.6rem 1.5rem;
+    color: var(--color-primary-deep);
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
   }
 
   .cta-link:hover {
     background-color: var(--color-secondary);
-    transform: translateY(-2px);
+    color: rgb(255, 255, 255);
   }
 
   .cta-link::after {

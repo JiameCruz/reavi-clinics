@@ -4,7 +4,7 @@
   padding: 2rem;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
   font-family: inherit;
 }
 

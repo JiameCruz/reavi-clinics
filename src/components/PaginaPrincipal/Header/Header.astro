@@ -3,53 +3,81 @@ import Nav from "./Nav.astro";
 ---
 
 <header>
-  <div class="header-container">
+  <div class="header-content">
     <a href="/" class="logo">
-      <img src="/logo.png" alt="Reavi Clinics" />
+      <img src="/img/Logo.jpg" alt="Reavi Clinics" />
     </a>
-
+    <div class="header-text">
+      <span class="brand-name">Reavi Clinics</span>
+      <span class="tagline">Fisioterapia y Masajes</span>
+    </div>
     <Nav />
   </div>
-</header>
 
-<style>
-  header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    padding: 1rem 0;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(52, 193, 207, 0.1);
-    display: grid;
-    place-items: center;
-    transition: var(--transition-smooth);
-  }
-
-  .header-container {
-    width: 90%;
-    max-width: 1200px;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
-    gap: 2rem;
-  }
-
-  .logo img {
-    height: 40px;
-    width: auto;
-    display: block;
-    transition: var(--transition-smooth);
-  }
-
-  @media (max-width: 768px) {
-    .header-container {
-      grid-template-columns: 1fr;
-      place-items: center;
-      gap: 1rem;
+  <style>
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: var(--color-white);
     }
-  }
-</style>
+
+    .header-content {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 0;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .logo img {
+      height: 56px;
+      width: auto;
+      display: block;
+      border-radius: 4px;
+      border: 1px solid var(--color-primary);
+    }
+
+    .header-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.125rem;
+    }
+
+    .brand-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--color-text-main);
+      line-height: 1.2;
+    }
+
+    .tagline {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-primary);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 768px) {
+      .header-content {
+        grid-template-columns: auto 1fr;
+        gap: 1rem;
+      }
+
+      .header-text {
+        display: none;
+      }
+
+      .logo img {
+        height: 48px;
+      }
+    }
+  </style>
+</header>

@@ -7,76 +7,230 @@
     <div class="hero-container">
       <div class="hero-content">
         <h1>Reavi Clinics</h1>
-        <p>Donde curamos tu dolor</p>
+        <p class="hero-tagline">Donde curamos tu dolor</p>
+        <div class="hero-divider"></div>
+        <p class="hero-description">
+          Clínica especializada en fisioterapia y masajes terapéuticos.
+          Recuperamos tu bienestar con atención personalizada.
+        </p>
+        <div class="hero-features">
+          <div class="feature">
+            <span class="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="currentColor"
+              >
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                ></path>
+              </svg>
+            </span>
+            <span>Fisioterapia profesional</span>
+          </div>
+          <div class="feature">
+            <span class="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="currentColor"
+              >
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                ></path>
+              </svg>
+            </span>
+            <span>Masajes terapéuticos</span>
+          </div>
+          <div class="feature">
+            <span class="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="currentColor"
+              >
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                ></path>
+              </svg>
+            </span>
+            <span>Atención personalizada</span>
+          </div>
+        </div>
       </div>
-      <div class="hero-image">
-        <img src="/img/hero-img.jpg" alt="Hero Image" />
+      <div class="hero-visual">
+        <div class="image-frame">
+          <div class="image-dup"></div>
+          <img src="/img/hero-img.jpg" alt="Reavi Clinics" />
+        </div>
       </div>
     </div>
   </section>
 </main>
-<style>
-  main {
-    padding-top: 4.5rem; /* Compensa el header fixed */
-  }
-  section {
-  }
 
+<style>
   .hero-container {
     display: grid;
-    height: 80vh;
+    min-height: 60vh;
     background-color: var(--color-primary);
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    border-bottom: 2px solid var(--color-primary);
+    grid-template-columns: 1fr 1fr;
     align-items: center;
   }
 
   .hero-content {
-    margin-left: 3rem;
+    padding: 4rem 0 4rem 5rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.25rem;
   }
 
   .hero-content h1 {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--color-text-main);
   }
 
-  .hero-content p {
-    font-size: 1.2rem;
+  .hero-tagline {
+    font-size: 1.5rem;
     font-weight: 500;
+    color: var(--color-secondary);
   }
 
-  .hero-image {
+  .hero-divider {
+    width: 60px;
+    height: 3px;
+    background: var(--color-primary);
+  }
+
+  .hero-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 480px;
+  }
+
+  .hero-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .feature {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-main);
+  }
+
+  .feature-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: var(--color-secondary);
+    color: var(--color-white);
+    border-radius: 50%;
+  }
+
+  .hero-visual {
     display: flex;
     justify-content: center;
+    align-items: center;
+    padding: 4rem;
+    margin-top: 10rem;
   }
 
-  .hero-image img {
-    width: 100%;
-    max-width: 500px;
+  .image-frame {
+    position: relative;
+    width: 500px;
+    height: 500px;
+  }
+
+  .image-frame img {
+    position: relative;
+    width: 80%;
+    height: 80%;
     border-radius: 10px;
+    z-index: 1;
+    object-fit: cover;
+    filter: contrast(1.1) saturate(1.05);
+    animation: animation-img-dup 1s ease-in-out;
+    animation-delay: 0.5s;
+    animation-fill-mode: backwards;
+  }
+
+  .image-frame::before {
+    content: "";
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 80%;
+    height: 80%;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+    animation: animation-img-dup 1s ease-in-out;
+    animation-delay: 0.5s;
+    animation-fill-mode: backwards;
+  }
+
+  @keyframes animation-img-dup {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .hero-content h1 {
+      font-size: 2.75rem;
+    }
+
+    .hero-content {
+      padding: 3rem 0 3rem 3rem;
+    }
   }
 
   @media (max-width: 768px) {
     .hero-container {
       grid-template-columns: 1fr;
-      height: auto;
+      min-height: auto;
       padding: 2rem;
-    }
-
-    .hero-container::before {
-      height: 98%;
+      gap: 3rem;
     }
 
     .hero-content {
-      margin-left: 0;
+      padding: 2rem 0;
+      align-items: center;
       text-align: center;
     }
 
-    .hero-image {
-      margin-top: 2rem;
+    .hero-content h1 {
+      font-size: 2.25rem;
+    }
+
+    .hero-divider {
+      margin: 0 auto;
+    }
+
+    .hero-description {
+      text-align: center;
+    }
+
+    .hero-visual {
+      padding: 2rem 0;
+    }
+
+    .image-frame {
+      max-width: 360px;
     }
   }
 </style>
