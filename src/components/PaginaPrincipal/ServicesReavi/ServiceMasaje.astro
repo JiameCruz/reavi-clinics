@@ -34,10 +34,11 @@ const services = [
   }
   .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, 180px);
     gap: 1.5rem;
     width: 100%;
   }
+
   .card {
     background-color: var(--color-secondary, #d266a3);
     color: #ffffff;
@@ -52,6 +53,8 @@ const services = [
       transform 0.3s ease,
       filter 0.3s ease;
     border-radius: 10px;
+    position: relative;
+    overflow: hidden;
   }
   .card:hover {
     transform: translateY(-4px);
