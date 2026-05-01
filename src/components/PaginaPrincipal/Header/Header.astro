@@ -4,12 +4,14 @@ import Nav from "./Nav.astro";
 
 <header>
   <div class="header-content">
-    <a href="/" class="logo">
-      <img src="/img/Logo.jpg" alt="Reavi Clinics" />
-    </a>
-    <div class="header-text">
-      <span class="brand-name">Reavi Clinics</span>
-      <span class="tagline">Fisioterapia y Masajes</span>
+    <div class="brand-group">
+      <a href="/" class="logo">
+        <img src="/img/Logo.jpg" alt="Reavi Clinics" />
+      </a>
+      <div class="header-text">
+        <span class="brand-name">Reavi Clinics</span>
+        <span class="tagline">Fisioterapia y Masajes</span>
+      </div>
     </div>
     <Nav />
   </div>
@@ -21,62 +23,70 @@ import Nav from "./Nav.astro";
       left: 0;
       width: 100%;
       z-index: 1000;
-      background: var(--color-white);
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(52, 193, 207, 0.1);
     }
 
     .header-content {
-      width: 90%;
-      max-width: 1200px;
+      width: 95%;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 1.5rem 0;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
+      padding: 1.25rem 0;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 3rem;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
     }
 
     .logo img {
-      height: 56px;
+      height: 52px;
       width: auto;
       display: block;
-      border-radius: 4px;
-      border: 1px solid var(--color-primary);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
     .header-text {
       display: flex;
       flex-direction: column;
-      gap: 0.125rem;
+      gap: 0;
     }
 
     .brand-name {
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
       color: var(--color-text-main);
-      line-height: 1.2;
+      line-height: 1.1;
     }
 
     .tagline {
-      font-size: 0.875rem;
-      font-weight: 500;
+      font-size: 0.75rem;
+      font-weight: 700;
       color: var(--color-primary);
-      letter-spacing: 0.05em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
+    }
+
+    @media (max-width: 1024px) {
+      .header-text {
+        display: none;
+      }
     }
 
     @media (max-width: 768px) {
       .header-content {
-        grid-template-columns: auto 1fr;
-        gap: 1rem;
+        padding: 1rem 0;
       }
-
-      .header-text {
-        display: none;
-      }
-
       .logo img {
-        height: 48px;
+        height: 44px;
       }
     }
   </style>
