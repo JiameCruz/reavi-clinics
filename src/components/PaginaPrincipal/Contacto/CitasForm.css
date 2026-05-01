@@ -1,18 +1,21 @@
 .citas-form-container {
   max-width: 600px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 3rem;
   background: white;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  border-radius: 32px;
+  border: none;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
   font-family: inherit;
 }
 
 .citas-form-container h3 {
   text-align: center;
   color: var(--color-primary, #2c3e50);
-  margin-bottom: 1.5rem;
-  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .citas-loading {
@@ -59,12 +62,13 @@
 .citas-form input[type="email"],
 .citas-form input[type="tel"] {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  padding: 1.25rem;
+  background: #f8fafc;
+  border: 2px solid transparent;
+  border-radius: 16px;
   font-size: 1rem;
   outline: none;
-  transition: border-color 0.3s;
+  transition: all 0.3s ease;
   box-sizing: border-box;
 }
 
@@ -77,6 +81,7 @@
 .citas-form select:focus,
 .citas-form input:focus {
   border-color: var(--color-primary, #3498db);
+  background: white;
 }
 
 .citas-form select:disabled,
@@ -94,10 +99,10 @@
 .hora-btn {
   background: #f8f9fa;
   border: 1px solid #dee2e6;
-  padding: 0.75rem 0.5rem;
-  border-radius: 8px;
+  padding: 1rem 0.5rem;
+  border-radius: 12px;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600;
   transition: all 0.2s;
   font-size: 1rem;
 }
@@ -120,24 +125,67 @@
 
 .submit-btn {
   width: 100%;
-  padding: 1rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  background: var(--color-primary, #3498db);
+  padding: 1.25rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  background: var(--color-secondary, #2980b9);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 16px;
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-  margin-top: 1rem;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+  margin-top: 1.5rem;
+  box-shadow: 0 10px 20px rgba(210, 102, 163, 0.3);
 }
 
 .submit-btn:hover:not(:disabled) {
-  background: var(--color-secondary, #2980b9);
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 30px rgba(210, 102, 163, 0.4);
 }
 
 .submit-btn:disabled {
-  background: #a0c4ff;
+  background: #e2e8f0;
+  color: #94a3b8;
+  box-shadow: none;
   cursor: not-allowed;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.step-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.step-header label {
+  margin-bottom: 0;
+}
+
+.btn-reset {
+  background: none;
+  border: none;
+  color: var(--color-secondary, #d266a3);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0;
+}
+
+.btn-reset:hover {
+  color: var(--color-primary-deep, #2ba8b5);
 }

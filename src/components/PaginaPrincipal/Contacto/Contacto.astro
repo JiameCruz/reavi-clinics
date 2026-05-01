@@ -2,7 +2,7 @@
 import CitasForm from './CitasForm';
 ---
 
-<section id="contact">
+<section id="contacto">
   <div class="contact-wrapper">
     <div class="contact-info">
       <h2>Agenda tu Cita</h2>
@@ -16,34 +16,37 @@ import CitasForm from './CitasForm';
 
 <style>
   section {
-    padding: 4rem 2rem;
-    background-color: var(--color-background-alt, #f9f9f9);
+    padding: 8rem 4rem;
+    background-color: var(--color-primary);
     display: flex;
     justify-content: center;
   }
 
   .contact-wrapper {
-    max-width: 1200px;
+    max-width: 1300px;
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 3rem;
-    align-items: start;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 6rem;
+    align-items: center;
   }
 
   .contact-info {
-    padding-top: 2rem;
+    padding-top: 0;
   }
 
   .contact-info h2 {
-    font-size: 2.5rem;
-    color: var(--color-primary, #2c3e50);
-    margin-bottom: 1rem;
+    font-size: 4rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
   }
 
   .contact-info p {
-    font-size: 1.1rem;
-    color: var(--color-text-main, #555);
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
     line-height: 1.6;
   }
 
@@ -51,10 +54,22 @@ import CitasForm from './CitasForm';
     width: 100%;
   }
 
+  @media (max-width: 1024px) {
+    .contact-wrapper {
+      gap: 4rem;
+    }
+    .contact-info h2 {
+      font-size: 3.5rem;
+    }
+  }
+
   @media (max-width: 900px) {
+    section {
+      padding: 4rem 2rem;
+    }
     .contact-wrapper {
       grid-template-columns: 1fr;
-      gap: 2rem;
+      gap: 3rem;
     }
     .contact-info {
       text-align: center;

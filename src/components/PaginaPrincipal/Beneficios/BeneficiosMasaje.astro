@@ -17,32 +17,74 @@ import {
   .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin: 4rem 0;
-    border-bottom: 2px solid var(--color-secondary);
-    padding: 2rem;
-  }
-  img {
-    border-radius: 8px;
-    width: 100%;
+    gap: 6rem;
+    margin: 8rem auto;
+    padding: 0 4rem;
+    max-width: 1400px;
+    align-items: center;
   }
 
   article {
-    padding: 1rem;
-    background: #f8fafc;
-    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
   }
 
-  h2 {
+  article :global(h2) {
     color: var(--color-secondary);
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
   }
 
-  p {
+  article :global(p) {
     color: var(--color-text-main);
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
+    font-size: 1.25rem;
+    line-height: 1.7;
+  }
+  
+  article :global(ul) {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  article :global(li) {
+    font-size: 1.15rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    color: var(--color-text-main);
+  }
+
+  article :global(li)::before {
+    content: "✓";
+    color: var(--color-secondary);
+    font-weight: 800;
+    font-size: 1.2rem;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 160px 40px 40px 40px;
+    box-shadow: 0 40px 80px rgba(210, 102, 163, 0.2);
+    object-fit: cover;
+    aspect-ratio: 4/5;
+  }
+
+  @media (max-width: 1024px) {
+    article :global(h2) {
+      font-size: 2.75rem;
+    }
+    .container {
+      gap: 3rem;
+      padding: 0 2rem;
+    }
   }
 
   @media (max-width: 768px) {

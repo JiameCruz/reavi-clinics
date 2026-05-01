@@ -4,6 +4,7 @@ import ServiceMasaje from "./ServiceMasaje.astro";
 ---
 
 <section id="services">
+  <h2 class="section-title">Nuestros Tratamientos</h2>
   <div class="services-container">
     <article class="service">
       <ServiceGral />
@@ -16,20 +17,44 @@ import ServiceMasaje from "./ServiceMasaje.astro";
 
 <style>
   section {
-    margin-top: 2rem;
-    padding: 2rem;
+    padding: 8rem 4rem;
+    background-color: var(--color-bg);
+  }
+
+  .section-title {
+    font-size: 4rem;
+    font-weight: 800;
     text-align: center;
+    margin-bottom: 5rem;
+    letter-spacing: -0.03em;
+    color: var(--color-text-main);
   }
 
   .services-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: 6rem;
+    max-width: 1400px;
+    margin: 0 auto;
   }
 
   .service {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+  }
+
+  @media (max-width: 1024px) {
+    .services-container {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+    .section-title {
+      font-size: 3rem;
+      margin-bottom: 3rem;
+    }
+    section {
+      padding: 4rem 2rem;
+    }
   }
 </style>

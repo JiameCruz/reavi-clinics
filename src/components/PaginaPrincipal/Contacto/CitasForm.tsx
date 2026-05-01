@@ -137,8 +137,11 @@ export default function CitasForm() {
 
 
       <form onSubmit={handleSubmit} className="citas-form">
-        <div className="form-group">
-          <label>1. Selecciona el Local (Sede)</label>
+        <div className="form-group step-container">
+          <div className="step-header">
+            <label>1. Selecciona el Local (Sede)</label>
+            {selectedLocal && <button type="button" className="btn-reset" onClick={() => setSelectedLocal('')}>Cambiar</button>}
+          </div>
           <select required value={selectedLocal} onChange={e => { setSelectedLocal(e.target.value); setSelectedProfesional(''); setSelectedServicio(''); }}>
             <option value="">-- Elige un local --</option>
             {locales.map(l => (
@@ -147,32 +150,39 @@ export default function CitasForm() {
           </select>
         </div>
 
-        <div className="form-group">
-          <label>2. Selecciona el Servicio</label>
-          <select required value={selectedServicio} onChange={e => { setSelectedServicio(e.target.value); setSelectedProfesional(''); }} disabled={!selectedLocal}>
-            <option value="">-- Elige un servicio --</option>
-            {filteredServicios.map(s => (
-              <option key={s.id} value={s.id}>{s.nombre}</option>
-            ))}
-          </select>
-        </div>
+        {selectedLocal && (
+          <div className="form-group fade-in">
+            <label>2. Selecciona el Servicio</label>
+            <select required value={selectedServicio} onChange={e => { setSelectedServicio(e.target.value); setSelectedProfesional(''); }}>
+              <option value="">-- Elige un servicio --</option>
+              {filteredServicios.map(s => (
+                <option key={s.id} value={s.id}>{s.nombre}</option>
+              ))}
+            </select>
+          </div>
+        )}
 
-        <div className="form-group">
-          <label>3. Selecciona el Profesional</label>
-          <select required value={selectedProfesional} onChange={e => setSelectedProfesional(e.target.value)} disabled={!selectedServicio}>
-            <option value="">-- Elige un profesional --</option>
-            {filteredProfesionales.map(p => (
-              <option key={p.id} value={p.id}>{p.nombre}</option>
-            ))}
-          </select>
-        </div>
+        {selectedServicio && (
+          <div className="form-group fade-in">
+            <label>3. Selecciona el Profesional</label>
+            <select required value={selectedProfesional} onChange={e => setSelectedProfesional(e.target.value)}>
+              <option value="">-- Elige un profesional --</option>
+              {filteredProfesionales.map(p => (
+                <option key={p.id} value={p.id}>{p.nombre}</option>
+              ))}
+            </select>
+          </div>
+        )}
 
-        <div className="form-group">
-          <label>4. Selecciona la Fecha</label>
-          <input type="date" required value={fecha} min={today} onChange={e => setFecha(e.target.value)} disabled={!selectedProfesional} />
-        </div>
+        {selectedProfesional && (
+          <div className="form-group fade-in">
+            <label>4. Selecciona la Fecha</label>
+            <input type="date" required value={fecha} min={today} onChange={e => setFecha(e.target.value)} />
+          </div>
+        )}
 
-        <div className="form-group">
+        {fecha && (
+          <div className="form-group fade-in">
           <label>5. Selecciona la Hora</label>
           <div className="horas-grid">
             {fecha && selectedProfesional && horasDisponibles.length === 0 && (
@@ -189,23 +199,30 @@ export default function CitasForm() {
               </button>
             ))}
           </div>
-          {/* Hidden input to ensure required validation */}
-          <input type="text" style={{display: 'none'}} required value={selectedHora} onChange={()=>{}} />
-        </div>
+            {/* Hidden input to ensure required validation */}
+            <input type="text" style={{display: 'none'}} required value={selectedHora} onChange={()=>{}} />
+          </div>
+        )}
 
-        <div className="form-group">
+        {selectedHora && (
+          <div className="form-group fade-in">
           <label>6. Tus Datos</label>
           <input type="text" placeholder="Nombre completo" required value={pacienteInfo.nombre} onChange={e => setPacienteInfo({...pacienteInfo, nombre: e.target.value})} />
           <input type="email" placeholder="Correo electrónico" required pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$" title="Ingrese un correo electrónico válido" value={pacienteInfo.email} onChange={e => setPacienteInfo({...pacienteInfo, email: e.target.value})} />
           <input type="tel" placeholder="Teléfono" required pattern="[\+0-9\s\-]{10}" title="Ingrese un número de teléfono válido (10 caracteres)" value={pacienteInfo.telefono} onChange={e => setPacienteInfo({...pacienteInfo, telefono: e.target.value})} />
         </div>
 
-        {successMsg && <div className="citas-success">{successMsg}</div>}
-        {errorMsg && <div className="citas-error">{errorMsg}</div>}
-        
-        <button type="submit" className="submit-btn" disabled={submitting}>
-          {submitting ? 'Agendando...' : 'Confirmar Cita'}
-        </button>
+        )}
+        {selectedHora && (
+          <>
+            {successMsg && <div className="citas-success fade-in">{successMsg}</div>}
+            {errorMsg && <div className="citas-error fade-in">{errorMsg}</div>}
+            
+            <button type="submit" className="submit-btn fade-in" disabled={submitting}>
+              {submitting ? 'Agendando...' : 'Confirmar Cita'}
+            </button>
+          </>
+        )}
       </form>
     </div>
   );
